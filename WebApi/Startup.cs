@@ -42,6 +42,8 @@ namespace WebApi
 
             services.AddTransient<IPasswordHasher<Customer>, BCryptPasswordHasher<Customer>>();
 
+            services.Configure<BCryptPasswordHasherOptions>(c => c.WorkFactor = 11);
+
             services.AddAuthentication(defaultScheme: "Basic")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", null);
 
