@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeServices", "FakeService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationHandlers", "AuthenticationHandlers\AuthenticationHandlers.csproj", "{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
