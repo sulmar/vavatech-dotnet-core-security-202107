@@ -1,4 +1,5 @@
 ﻿using IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
+   // [Authorize]
     [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
@@ -17,13 +19,27 @@ namespace WebApi.Controllers
         {
             this.customerService = customerService;
         }
-
+       
         [HttpGet]
         public ActionResult<IEnumerable<Customer>> Get()
         {
-            var customers = customerService.Get();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var customers = customerService.Get();
 
-            return Ok(customers);
+                return Ok(customers);
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("/about")]
+        public IActionResult About()
+        {
+            return Ok("Hello World");
         }
     }
 }

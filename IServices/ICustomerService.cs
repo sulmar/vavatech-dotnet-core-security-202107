@@ -7,5 +7,7 @@ namespace IServices
     public interface ICustomerService
     {
         IEnumerable<Customer> Get();
+
+        Customer Get(string username);
     }
 }

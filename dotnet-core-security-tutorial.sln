@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeServices", "FakeServices\FakeServices.csproj", "{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationHandlers", "AuthenticationHandlers\AuthenticationHandlers.csproj", "{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{5B55352C-8C95-4556-BD1D-8204521AC205} = {17A372C5-AE2A-4010-9C50-563C3430EF49}
 		{CC800EC8-20B5-429C-A251-AB039947C305} = {17A372C5-AE2A-4010-9C50-563C3430EF49}
 		{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A} = {17A372C5-AE2A-4010-9C50-563C3430EF49}
+		{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7} = {17A372C5-AE2A-4010-9C50-563C3430EF49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D6D6703-69C5-4A19-92CA-2FB805D290F5}

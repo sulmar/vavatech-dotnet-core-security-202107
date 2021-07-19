@@ -1,7 +1,9 @@
+using AuthenticationHandlers;
 using Bogus;
 using Fakers;
 using FakeServices;
 using IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace WebApi
@@ -32,6 +35,10 @@ namespace WebApi
         {
             services.AddSingleton<ICustomerService, FakeCustomerService>();
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
+            services.AddSingleton<IAuthorizationService, CustomerAuthorizationService>();
+
+            services.AddAuthentication(defaultScheme: "Basic")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", null);
 
             services.AddControllers();
         }
@@ -48,6 +55,7 @@ namespace WebApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

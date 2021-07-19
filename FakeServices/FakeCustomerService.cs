@@ -3,6 +3,7 @@ using IServices;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FakeServices
 {
@@ -18,6 +19,11 @@ namespace FakeServices
         public IEnumerable<Customer> Get()
         {
             return customers;
+        }
+
+        public Customer Get(string username)
+        {
+            return customers.SingleOrDefault(c => c.Username == username);
         }
     }
 }
