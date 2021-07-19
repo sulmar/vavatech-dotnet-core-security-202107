@@ -24,11 +24,19 @@ namespace Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
+        public Gender Gender { get; set; }
         public string HashedPassword { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public IEnumerable<Role> Roles { get; set; }
         public bool IsRemoved { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
     }
 
     public class Order : BaseEntity

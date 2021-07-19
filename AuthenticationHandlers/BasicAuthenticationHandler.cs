@@ -56,7 +56,9 @@ namespace AuthenticationHandlers
             }
 
             ClaimsIdentity identity = new ClaimsIdentity("Basic");
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, customer.Username));
+            identity.AddClaim(new Claim(ClaimTypes.Name, customer.Username));
+
+         
 
             ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 

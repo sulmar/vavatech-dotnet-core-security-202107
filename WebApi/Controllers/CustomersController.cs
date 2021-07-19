@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
-   // [Authorize]
+
+    // [Authorize(Roles = "Administrator,Trainer")]
+    [AuthorizeRoles(AuthorizationLevel.Roles.Admin, AuthorizationLevel.Roles.Developer)]
     [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
@@ -26,7 +28,7 @@ namespace WebApi.Controllers
             if (this.User.Identity.IsAuthenticated)
             {
                 var customers = customerService.Get();
-
+                
                 return Ok(customers);
             }
             else
@@ -35,11 +37,22 @@ namespace WebApi.Controllers
             }
         }
 
+
         [AllowAnonymous]
         [HttpGet("/about")]
         public IActionResult About()
         {
             return Ok("Hello World");
         }
+
+
+        [Authorize(Policy = "ManAdult")]
+        [HttpGet("/help")]
+        public IActionResult Help()
+        {
+            return Ok("Help");
+        }
+
+
     }
 }

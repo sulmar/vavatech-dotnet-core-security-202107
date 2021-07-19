@@ -4,6 +4,7 @@ using Fakers;
 using FakeServices;
 using IServices;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +18,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
@@ -36,7 +38,10 @@ namespace WebApi
         {
             services.AddSingleton<ICustomerService, FakeCustomerService>();
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
-            services.AddSingleton<IAuthorizationService, CustomerAuthorizationService>();
+            services.AddSingleton<IServices.IAuthorizationService, CustomerAuthorizationService>();
+
+            services.AddSingleton<IOrderService, FakerOrderService>();
+            services.AddSingleton<Faker<Order>, OrderFaker>();
 
             // services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 
@@ -46,6 +51,46 @@ namespace WebApi
 
             services.AddAuthentication(defaultScheme: "Basic")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", null);
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("WomanAdult",
+                    policy =>
+                    {
+                        // policy.Requirements.Add(new GenderRequirement(Gender.Female));
+                        // policy.Requirements.Add(new MinimumAgeRequirement(18));
+
+                        policy.RequireClaim(ClaimTypes.DateOfBirth);
+                        policy.RequireClaim(ClaimTypes.Gender);
+
+                        policy.RequireGender(Gender.Female);
+                        policy.RequireAge(18);
+
+                        
+                    });
+
+                options.AddPolicy("ManAdult",
+                    policy =>
+                    {
+                        // policy.Requirements.Add(new GenderRequirement(Gender.Male));
+                        // policy.Requirements.Add(new MinimumAgeRequirement(25));
+
+                        policy.RequireClaim(ClaimTypes.DateOfBirth);
+                        policy.RequireClaim(ClaimTypes.Gender);
+
+                        policy.RequireRole("Administrator");
+
+                        policy.RequireGender(Gender.Male);
+                        policy.RequireAge(25);
+                    });
+            });
+
+            services.AddScoped<IAuthorizationHandler, MinimumAgeHandler>();
+            services.AddScoped<IAuthorizationHandler, GenderHandler>();
+
+            services.AddScoped<IClaimsTransformation, CustomerClaimsTransformation>();
+
+            
 
             services.AddControllers();
         }
