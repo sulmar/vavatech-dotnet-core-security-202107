@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +37,10 @@ namespace WebApi
             services.AddSingleton<ICustomerService, FakeCustomerService>();
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
             services.AddSingleton<IAuthorizationService, CustomerAuthorizationService>();
+
+            // services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
+
+            services.AddTransient<IPasswordHasher<Customer>, BCryptPasswordHasher<Customer>>();
 
             services.AddAuthentication(defaultScheme: "Basic")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("Basic", null);
