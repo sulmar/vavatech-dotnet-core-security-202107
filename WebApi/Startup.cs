@@ -1,3 +1,7 @@
+using Bogus;
+using Fakers;
+using FakeServices;
+using IServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +30,9 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ICustomerService, FakeCustomerService>();
+            services.AddSingleton<Faker<Customer>, CustomerFaker>();
+
             services.AddControllers();
         }
 

@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Fakers\Fakers.csproj" />
+    <ProjectReference Include="..\FakeServices\FakeServices.csproj" />
     <ProjectReference Include="..\IServices\IServices.csproj" />
   </ItemGroup>
 
