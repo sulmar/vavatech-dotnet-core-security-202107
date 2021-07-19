@@ -43,6 +43,8 @@ namespace WebApi
             services.AddSingleton<IOrderService, FakerOrderService>();
             services.AddSingleton<Faker<Order>, OrderFaker>();
 
+            
+
             // services.AddTransient<IPasswordHasher<Customer>, PasswordHasher<Customer>>();
 
             services.AddTransient<IPasswordHasher<Customer>, BCryptPasswordHasher<Customer>>();
@@ -83,10 +85,13 @@ namespace WebApi
                         policy.RequireGender(Gender.Male);
                         policy.RequireAge(25);
                     });
+
+                options.AddPolicy("TheSameAuthor", policy => policy.Requirements.Add(new TheSameAuthorRequirment()));
             });
 
             services.AddScoped<IAuthorizationHandler, MinimumAgeHandler>();
             services.AddScoped<IAuthorizationHandler, GenderHandler>();
+            services.AddScoped<IAuthorizationHandler, OrderAuthorizationHandler>();
 
             services.AddScoped<IClaimsTransformation, CustomerClaimsTransformation>();
 

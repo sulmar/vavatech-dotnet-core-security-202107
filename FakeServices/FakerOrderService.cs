@@ -26,5 +26,10 @@ namespace FakeServices
         {
             return orders.Where(p => p.Customer.Username == username);
         }
+
+        public Order Get(int id)
+        {
+            return orders.SingleOrDefault(p => p.Id == id);
+        }
     }
 }

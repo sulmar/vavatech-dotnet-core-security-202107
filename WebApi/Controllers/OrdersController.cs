@@ -1,4 +1,5 @@
-﻿using IServices;
+﻿using AuthenticationHandlers;
+using IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -37,6 +38,30 @@ namespace WebApi.Controllers
                 return Ok(orders);
             }
 
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order>> Get(int id, 
+            [FromServices] Microsoft.AspNetCore.Authorization.IAuthorizationService authorizationService)
+        {
+            Order order = orderService.Get(id);
+
+            var result  = await authorizationService.AuthorizeAsync(User, order, new TheSameAuthorRequirment());
+
+            if (result.Succeeded)
+            {
+                return Ok(order);
+            }
+            else if (User.Identity.IsAuthenticated)
+            {
+                return Forbid();
+            }
+            else
+            {
+                return Challenge();
+            }
+
+            
         }
 
         [HttpPost]
