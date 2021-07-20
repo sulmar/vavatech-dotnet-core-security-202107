@@ -19,11 +19,12 @@ namespace SqlInjection.DbServices
 
         public Employee Get(int id)
         {
-            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE EmployeeID = " + id;
+            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE EmployeeID = @EmployeeId";
 
             Employee employee = null;
 
             SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@EmployeeId", id);
 
             connection.Open();
 
@@ -52,12 +53,20 @@ namespace SqlInjection.DbServices
 
         public Employee Validate(string username, string password)
         {
-            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE [UserName] = '" + username + "'" + " AND [Password] = '" + password + "'";
+            // string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE [UserName] = '" + username + "'" + " AND [Password] = '" + password + "'";
+
+            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE [UserName] = @username AND [Password] = @password";
+
 
             Employee employee = null;
 
-            SqlCommand command = new SqlCommand(sql, connection);
+            SqlParameter userNameParameter = new SqlParameter("@username", username);            
+            SqlParameter passwordParameter = new SqlParameter("@password", password);
 
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.Add(userNameParameter);
+            command.Parameters.Add(passwordParameter);
+            
             connection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
@@ -74,11 +83,15 @@ namespace SqlInjection.DbServices
 
         public IEnumerable<Employee> Get(string searchString = "")
         {
-            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE FirstName = '" + searchString + "'";
+            // zła praktyka
+           // string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE FirstName = '" + searchString + "'";
+
+            string sql = "SELECT [EmployeeID], FirstName, LastName FROM [dbo].[Employees] WHERE FirstName = @searchString";
 
             IList<Employee> employees = new List<Employee>();
 
             SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@searchString", searchString ?? string.Empty);
 
             connection.Open();
 
