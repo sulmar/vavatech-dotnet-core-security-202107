@@ -63,6 +63,8 @@ namespace XSSAttack
             // https://securityheaders.com/
             // https://www.zaproxy.org/
 
+            app.UseMiddleware<AntiDOSMiddleware>(10, 5000);
+
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");

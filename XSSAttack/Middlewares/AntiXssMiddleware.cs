@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace XSSAttack.Middlewares
 {
+
     public class AntiXssMiddleware
     {
         private readonly RequestDelegate next;
@@ -18,6 +18,8 @@ namespace XSSAttack.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
+            
+
             // Check XSS in URL
             string url = context.Request.Path.Value;
 
