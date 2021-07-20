@@ -25,6 +25,7 @@ namespace XSSAttack.FakeServices
         {
             Post existingPost = Get(post.Id);
 
+            existingPost.Title = post.Title;
             existingPost.Content = post.Content;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Ganss.XSS;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -63,10 +64,16 @@ namespace XSSAttack.Controllers
             return View(post);
         }
 
+
+        // dotnet add package HtmlSanitizer 
+
         // POST: PostsController/Edit/5
         [HttpPost]        
-        public ActionResult Edit([FromForm] Post post)
+        public ActionResult Edit([FromForm] Post post, [FromServices] IHtmlSanitizer htmlSanitizer)
         {
+            post.Title = htmlSanitizer.Sanitize(post.Title);
+            post.Content = htmlSanitizer.Sanitize(post.Content);
+
             try
             {
                 postRepository.Update(post);
