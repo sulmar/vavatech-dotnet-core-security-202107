@@ -60,6 +60,9 @@ namespace XSSAttack
 
             // app.UseXfo(options => options.SameOrigin());
 
+            // https://securityheaders.com/
+            // https://www.zaproxy.org/
+
             app.Use(async (context, next) =>
             {
                 context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
