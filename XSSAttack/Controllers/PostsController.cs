@@ -72,7 +72,7 @@ namespace XSSAttack.Controllers
         public ActionResult Edit([FromForm] Post post, [FromServices] IHtmlSanitizer htmlSanitizer)
         {
             post.Title = htmlSanitizer.Sanitize(post.Title);
-            post.Content = htmlSanitizer.Sanitize(post.Content);
+         //   post.Content = htmlSanitizer.Sanitize(post.Content);
 
             try
             {
