@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using XSSAttack.Fakers;
 using XSSAttack.FakeServices;
 using XSSAttack.IServices;
+using XSSAttack.Middlewares;
 using XSSAttack.Models;
 
 namespace XSSAttack
@@ -54,6 +55,8 @@ namespace XSSAttack
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseMiddleware<AntiXssMiddleware>();
 
             app.UseAuthorization();
 
