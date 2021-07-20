@@ -29,11 +29,18 @@ namespace UploadFiles.Pages.Attachments
 
         public async Task<IActionResult> OnPost()
         {
-            byte[] attachment = await FormFile.GetBytes();
+            if (FormFile.ContentType == "application/pdf")
+            {
+                byte[] attachment = await FormFile.GetBytes();
 
-            attachmentRepository.Add(attachment);
+                attachmentRepository.Add(attachment);
 
-            return RedirectToPage("/Attachments/Index");
+                return RedirectToPage("/Attachments/Index");
+            }
+            else
+            {
+                return RedirectToPage("/ErrorContentType");
+            }
         }
     }
 

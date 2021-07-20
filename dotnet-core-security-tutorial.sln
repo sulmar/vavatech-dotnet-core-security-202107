@@ -25,11 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fakers", "Fakers\Fakers.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{CC800EC8-20B5-429C-A251-AB039947C305}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeServices", "FakeServices\FakeServices.csproj", "{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakeServices", "FakeServices\FakeServices.csproj", "{90BA3B7C-A1A6-47F0-90BC-D3C29AC1FC2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationHandlers", "AuthenticationHandlers\AuthenticationHandlers.csproj", "{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationHandlers", "AuthenticationHandlers\AuthenticationHandlers.csproj", "{DC1013A4-57F6-48B9-BB2F-B8B7E1F78CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{1879E8F2-3B4C-4067-9E1B-6D2CFD09E587}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
